@@ -45,6 +45,8 @@
 
 #include <cuda.h>
 
+#define BLKDIM 1024
+
 typedef struct
 {
     float *P; /* coordinates P[i][j] of point i               */
@@ -133,21 +135,21 @@ __device__ int dominates(const float *p, const float *q, int D)
 }
 
 
-__global__ void kernel_skyline(const float *P, int *s, int N, int D)
+__global__ void kernel_skyline(const float *P, int *s, int N, int D, int *r)
 {
-    int i = threadIdx.x + blockIdx.x * blockDim.x;
-    if (i < N && s[i])
+    const int i = threadIdx.x + blockIdx.x * blockDim.x;
+
+    if ( i < N && s[i] )
     {
         for (int j = 0; j < N; j++)
         {
             if (s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
             {
-                s[j] = 0;
-                //r--;
+                atomicExch(&s[i], 0);
+                atomicSub(r, 1);
             }
         }
     }
-    
 }
 
 /**
@@ -163,28 +165,38 @@ int skyline(const points_t *points, int *s)
     const float *P = points->P;
     int r = N;
 
-    const int BLKDIM = 1024;
     const int NBLOCKS = (N + BLKDIM - 1) / BLKDIM;
 
-    for (int i = 0; i < N; i++)
+    float* d_P;
+    int* d_s;
+    int* d_r;
+
+    const size_t P_SIZE = sizeof(float) * N * D;
+    const size_t S_SIZE = sizeof(int) * N;
+    const size_t R_SIZE = sizeof(int);
+    
+    cudaSafeCall( cudaMalloc(&d_P, P_SIZE) );
+    cudaSafeCall( cudaMalloc(&d_s, S_SIZE) );
+    cudaSafeCall( cudaMalloc(&d_r, R_SIZE) );
+
+    for (size_t i = 0; i < N; i++)
     {
         s[i] = 1;
     }
 
-    // for (int i = 0; i < N; i++)
-    // {
-    //     if (s[i])
-    //     {
-    //         for (int j = 0; j < N; j++)
-    //         {
-    //             if (s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
-    //             {
-    //                 s[j] = 0;
-    //                 r--;
-    //             }
-    //         }
-    //     }
-    // }
+    cudaSafeCall( cudaMemcpy(d_P, P, P_SIZE, cudaMemcpyHostToDevice) );
+    cudaSafeCall( cudaMemcpy(d_s, s, S_SIZE, cudaMemcpyHostToDevice) );
+    cudaSafeCall( cudaMemcpy(d_r, &r, R_SIZE, cudaMemcpyHostToDevice) );
+
+    kernel_skyline<<<NBLOCKS, BLKDIM>>>(d_P, d_s, N, D, d_r);
+
+    cudaSafeCall( cudaMemcpy(s, d_s, S_SIZE, cudaMemcpyDeviceToHost) );
+    cudaSafeCall( cudaMemcpy(&r, d_r, R_SIZE, cudaMemcpyDeviceToHost) );
+
+    cudaSafeCall( cudaFree(d_P) );
+    cudaSafeCall( cudaFree(d_s) );
+    cudaSafeCall( cudaFree(d_r) );
+
     return r;
 }
 

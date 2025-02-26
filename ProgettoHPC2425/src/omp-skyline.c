@@ -151,9 +151,12 @@ int skyline( const points_t *points, int *s )
                 if ( s[j] && dominates( &(P[i*D]), &(P[j*D]), D ) ) {
                     #pragma omp critical
                     {
-                        s[j] = 0;
+                        if (s[j])
+                        {
+                            s[j] = 0;
+                            r--;
+                        }
                     }
-                    r--;
                 }
             }
         }

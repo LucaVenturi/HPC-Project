@@ -1,3 +1,45 @@
 prima esecuzione 122 secondi,
 seconda esecuzione 29 secondi
 terza esecuzione 23 secondi
+
+    // __shared__ int block_r[BLKDIM];
+    // const int blockNum = blockIdx.x;
+    // const int i = threadIdx.x + blockIdx.x * blockDim.x;
+
+    // if (i < N)
+    // {
+    //     s[i] = 1;
+
+    //     if ( threadIdx.x == 0 )
+    //     {
+    //         block_r[blockNum] = 0;
+    //     }
+
+    //     __syncthreads();
+
+    //     if (s[i])
+    //     {
+    //         for (int j = 0; j < N; j++)
+    //         {
+    //             if (s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
+    //             {
+    //                 atomicExch(&s[i], 0);
+    //                 block_r[threadIdx.x]++;
+    //                 atomicSub(r, 1);
+    //             }
+    //         }
+    //     }
+
+    //     for (size_t i = 0; i < BLKDIM; i++)
+    //     {
+            
+    //     }
+        
+
+    //     __syncthreads();
+
+    //     if ( threadIdx.x == 0 )
+    //     {
+    //         atomicSub(r, block_r[blockNum]);
+    //     }
+    // }
