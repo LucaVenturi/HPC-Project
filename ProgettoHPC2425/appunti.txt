@@ -1,0 +1,3 @@
+prima esecuzione 122 secondi,
+seconda esecuzione 29 secondi
+terza esecuzione 23 secondi
