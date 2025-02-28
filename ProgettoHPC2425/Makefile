@@ -52,6 +52,11 @@ TEST_NVCFLAGS = $(NVCFLAGS) -DTESTING
 
 test: $(patsubst $(BIN_DIR)/%, $(BIN_DIR)/test_%, $(EXE))
 
+# Aggiunge il flag OpenMP ai file omp-*.c anche per il target test
+$(BIN_DIR)/test_omp-% : $(SRC_DIR)/omp-%.c
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(TEST_CFLAGS) -fopenmp $< -o $@ $(LDLIBS)
+
 $(BIN_DIR)/test_% : $(SRC_DIR)/%.cu
 	@mkdir -p $(BIN_DIR)
 	$(NVCC) $(TEST_NVCFLAGS) $< -o $@ $(NVLDLIBS)

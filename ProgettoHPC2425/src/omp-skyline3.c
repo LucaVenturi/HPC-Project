@@ -43,10 +43,6 @@
 
 #include "hpc.h"
 
-#include <cuda.h>
-
-#define BLKDIM 1024
-
 typedef struct
 {
     float *P; /* coordinates P[i][j] of point i               */
@@ -113,7 +109,7 @@ void free_points(points_t *points)
 }
 
 /* Returns 1 iff |p| dominates |q| */
-__device__ int dominates(const float *p, const float *q, int D)
+int dominates(const float *p, const float *q, int D)
 {
     /* The following loops could be merged, but the keep them separated
        for the sake of readability */
@@ -134,22 +130,6 @@ __device__ int dominates(const float *p, const float *q, int D)
     return 0;
 }
 
-__global__ void kernel_skyline(const float *P, int *s, int N, int D)
-{
-    const int i = threadIdx.x + blockIdx.x * blockDim.x;
-
-    if ( i < N && s[i] )
-    {
-        for (int j = 0; j < N; j++)
-        {
-            if (s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
-            {
-                atomicExch(&s[j], 0);
-            }
-        }
-    }
-}
-
 /**
  * Compute the skyline of `points`. At the end, `s[i] == 1` iff point
  * `i` belongs to the skyline. The function returns the number `r` of
@@ -163,36 +143,39 @@ int skyline(const points_t *points, int *s)
     const float *P = points->P;
     int r = 0;
 
-    const int NBLOCKS = (N + BLKDIM - 1) / BLKDIM;
+    int local_s[N];
 
-    float* d_P;
-    int* d_s;
-
-    const size_t P_SIZE = sizeof(float) * N * D;
-    const size_t S_SIZE = sizeof(int) * N;
-    
-    cudaSafeCall( cudaMalloc(&d_P, P_SIZE) );
-    cudaSafeCall( cudaMalloc(&d_s, S_SIZE) );
-
-    for (size_t i = 0; i < N; i++)
+    #pragma omp parallel
     {
-        s[i] = 1;
+        #pragma omp for
+        for (int i = 0; i < N; i++)
+        {
+            s[i] = 1;
+            local_s[i] = 1;
+        }
+
+        #pragma omp for schedule(dynamic, 32) reduction(&& : local_s[ : N])
+        for (int i = 0; i < N; i++)
+        {
+            if (local_s[i])
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    if (local_s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
+                    {
+                        local_s[j] = 0;
+                    }
+                }
+            }
+        }
+
+        #pragma omp for reduction(+ : r)
+        for (int i = 0; i < N; i++)
+        {
+            s[i] = local_s[i];
+            r += (s[i] ? 1 : 0);
+        }
     }
-
-    cudaSafeCall( cudaMemcpy(d_P, P, P_SIZE, cudaMemcpyHostToDevice) );
-    cudaSafeCall( cudaMemcpy(d_s, s, S_SIZE, cudaMemcpyHostToDevice) );
-
-    kernel_skyline<<<NBLOCKS, BLKDIM>>>(d_P, d_s, N, D);
-
-    cudaSafeCall( cudaMemcpy(s, d_s, S_SIZE, cudaMemcpyDeviceToHost) );
-
-    for (size_t i = 0; i < N; i++)
-    {
-        r += s[i];
-    }
-
-    cudaSafeCall( cudaFree(d_P) );
-    cudaSafeCall( cudaFree(d_s) );
 
     return r;
 }

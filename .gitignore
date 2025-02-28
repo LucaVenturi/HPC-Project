@@ -1,7 +1,9 @@
 # Ignora tutto il contenuto di datasets e outputs
 /ProgettoHPC2425/datasets/*
 /ProgettoHPC2425/outputs/*
+/ProgettoHPC2425/bin/*
 
 # Escludi il file .gitkeep dalle regole di ignore
 !/ProgettoHPC2425/datasets/.gitkeep
 !/ProgettoHPC2425/outputs/.gitkeep
+!/ProgettoHPC2425/bin/.gitkeep

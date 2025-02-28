@@ -1,0 +1,90 @@
+========================================
+Eseguendo: ./bin/test_cuda-skyline1
+Output file: ./outputs/test7-N100000-D200__cuda-skyline1.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  4.096710 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline1.1
+Output file: ./outputs/test7-N100000-D200__cuda-skyline1.1.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  4.140932 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2
+Output file: ./outputs/test7-N100000-D200__cuda-skyline2.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  1.407513 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2.1
+Output file: ./outputs/test7-N100000-D200__cuda-skyline2.1.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  1.405476 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline3
+Output file: ./outputs/test7-N100000-D200__cuda-skyline3.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  39.442158 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline
+Output file: ./outputs/test7-N100000-D200__omp-skyline.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  49.024790 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline2
+Output file: ./outputs/test7-N100000-D200__omp-skyline2.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  47.361621 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline3
+Output file: ./outputs/test7-N100000-D200__omp-skyline3.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  50.668188 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline4
+Output file: ./outputs/test7-N100000-D200__omp-skyline4.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  83.984134 (s)
+========================================
+Eseguendo: ./bin/test_skyline
+Output file: ./outputs/test7-N100000-D200__skyline.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Execution time (s) 191.875521

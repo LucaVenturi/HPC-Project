@@ -144,7 +144,7 @@ int skyline( const points_t *points, int *s )
     // Non essendo sincronizzate r conta più volte lo stesso punto, i punti nell'insieme finale sono però corretti.
 
     // ora va bene
-    #pragma omp parallel for schedule(dynamic, 32) reduction(&&:local_s[:N])
+    #pragma omp parallel for schedule(dynamic) reduction(&&:local_s[:N])
     for (int i=0; i<N; i++) {
         if ( local_s[i] ) {
             for (int j=0; j<N; j++) {
@@ -206,12 +206,12 @@ int main( int argc, char* argv[] )
     double elapsed[10];
     for (size_t i = 0; i < 10; i++)
     {
-        fprintf(stderr, "Iteration %ld\n", i);
+        //fprintf(stderr, "Iteration %ld\n", i);
         const double tstart = hpc_gettime();
         r = skyline(&points, s);
         elapsed[i] = hpc_gettime() - tstart;
-        fprintf(stderr, "Completed in (s) %f\n", elapsed[i]);
-        fprintf(stderr, "r: %d\n", r);
+        //fprintf(stderr, "Completed in (s) %f\n", elapsed[i]);
+        //fprintf(stderr, "r: %d\n", r);
     }
 
     const double avg = (elapsed[0] + elapsed[1] + elapsed[2] + elapsed[3] + elapsed[4] + elapsed[5] + elapsed[6] + elapsed[7] + elapsed[8] + elapsed[9]) / 10;
