@@ -142,7 +142,9 @@ int skyline( const points_t *points, int *s )
 
     // NON VA BENE, ogni thread non è aggiornato con i valori di s, dovrebbe esserci una sincronizzazione ad ogni iterazione e non solo alla fine.
     // Non essendo sincronizzate r conta più volte lo stesso punto, i punti nell'insieme finale sono però corretti.
-    #pragma omp parallel for schedule(dynamic) reduction(-:r) reduction(&&:local_s[:N])
+
+    // ora va bene
+    #pragma omp parallel for schedule(dynamic, 32) reduction(&&:local_s[:N])
     for (int i=0; i<N; i++) {
         if ( local_s[i] ) {
             for (int j=0; j<N; j++) {
