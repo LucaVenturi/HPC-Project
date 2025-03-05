@@ -41,17 +41,13 @@ for test_exec in "$BIN_DIR"/test_*; do
         output_file="$OUTPUTS_DIR/${input_name}__${suffix}.out"
 
         # Scrive una separazione nel file di log
-        echo "========================================" >> "$RESULTS_LOG
-    "
-        echo "Eseguendo: $test_exec" >> "$RESULTS_LOG
-    "
-        echo "Output file: $output_file" >> "$RESULTS_LOG
-    "
+        echo "========================================" >> "$RESULTS_LOG"
+        echo "Eseguendo: $test_exec" >> "$RESULTS_LOG"
+        echo "Output file: $output_file" >> "$RESULTS_LOG"
 
         # Esecuzione del file di test
         echo "Eseguendo: $test_exec < $INPUT_FILE > $output_file"
-        "$test_exec" < "$INPUT_FILE" > "$output_file" 2>>"$RESULTS_LOG
-    "
+        "$test_exec" < "$INPUT_FILE" > "$output_file" 2>>"$RESULTS_LOG"
     else
         echo "Saltato (non eseguibile): $test_exec"
     fi

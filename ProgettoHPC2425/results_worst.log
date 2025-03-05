@@ -1,0 +1,90 @@
+========================================
+Eseguendo: ./bin/test_cuda-skyline1
+Output file: ./outputs/worst-N100000-D10__cuda-skyline1.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  0.475107 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline1.1
+Output file: ./outputs/worst-N100000-D10__cuda-skyline1.1.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  0.474202 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2
+Output file: ./outputs/worst-N100000-D10__cuda-skyline2.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  0.828976 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2.1
+Output file: ./outputs/worst-N100000-D10__cuda-skyline2.1.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  0.812475 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline3
+Output file: ./outputs/worst-N100000-D10__cuda-skyline3.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  25.936847 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline
+Output file: ./outputs/worst-N100000-D10__omp-skyline.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  13.292257 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline2
+Output file: ./outputs/worst-N100000-D10__omp-skyline2.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  13.712133 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline3
+Output file: ./outputs/worst-N100000-D10__omp-skyline3.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  14.102549 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline4
+Output file: ./outputs/worst-N100000-D10__omp-skyline4.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Average execution time:  19.252523 (s)
+========================================
+Eseguendo: ./bin/test_skyline
+Output file: ./outputs/worst-N100000-D10__skyline.out
+
+	100000 points
+	10 dimensions
+	100000 points in skyline
+
+Execution time (s) 54.393631

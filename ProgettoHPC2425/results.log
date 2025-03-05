@@ -1,0 +1,27 @@
+========================================
+Eseguendo: ./bin/test_cuda-skyline2
+Output file: ./outputs/test7-N100000-D200__cuda-skyline2.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  1.296642 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2.1
+Output file: ./outputs/test7-N100000-D200__cuda-skyline2.1.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  1.360540 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2.2
+Output file: ./outputs/test7-N100000-D200__cuda-skyline2.2.out
+
+	100400 points
+	200 dimensions
+	100200 points in skyline
+
+Average execution time:  1.728617 (s)
