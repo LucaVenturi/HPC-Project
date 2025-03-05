@@ -1,0 +1,90 @@
+========================================
+Eseguendo: ./bin/test_cuda-skyline1
+Output file: ./outputs/circle-N1000-D2__cuda-skyline1.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.057183 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline1.1
+Output file: ./outputs/circle-N1000-D2__cuda-skyline1.1.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.032458 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2
+Output file: ./outputs/circle-N1000-D2__cuda-skyline2.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.033618 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline2.1
+Output file: ./outputs/circle-N1000-D2__cuda-skyline2.1.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.031738 (s)
+========================================
+Eseguendo: ./bin/test_cuda-skyline3
+Output file: ./outputs/circle-N1000-D2__cuda-skyline3.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.036278 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline
+Output file: ./outputs/circle-N1000-D2__omp-skyline.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.000130 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline2
+Output file: ./outputs/circle-N1000-D2__omp-skyline2.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.000080 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline3
+Output file: ./outputs/circle-N1000-D2__omp-skyline3.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.000084 (s)
+========================================
+Eseguendo: ./bin/test_omp-skyline4
+Output file: ./outputs/circle-N1000-D2__omp-skyline4.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Average execution time:  0.000203 (s)
+========================================
+Eseguendo: ./bin/test_skyline
+Output file: ./outputs/circle-N1000-D2__skyline.out
+
+	1000 points
+	2 dimensions
+	15 points in skyline
+
+Execution time (s) 0.000063
