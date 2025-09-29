@@ -1,0 +1,13 @@
+Executable,Dataset,SkylinePoints,AvgTime_s
+skyline,circle-N1000-D2.in,15,0.000109
+skyline,test1-N100000-D3.in,26,0.024940
+skyline,test2-N100000-D4.in,10352,2.574188
+skyline,test3-N100000-D10.in,24892,20.702034
+skyline,test3-N141421-D10.in,31212,37.748436
+skyline,test3-N173205-D10.in,34688,51.620778
+skyline,test3-N200000-D10.in,39965,64.392104
+skyline,test4-N100000-D8.in,17458,13.159842
+skyline,test5-N100000-D20.in,96973,91.024404
+skyline,test6-N100000-D50.in,100050,131.468718
+skyline,test7-N100000-D200.in,100200,195.619119
+skyline,worst-N100000-D10.in,100000,58.512979

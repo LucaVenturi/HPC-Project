@@ -1,0 +1,13 @@
+Executable,Dataset,SkylinePoints,AvgTime_s
+cuda-skyline2.1,test1-N1000000-D3.in,41,15.965072
+cuda-skyline1.1,test1-N1000000-D3.in,41,4.046621
+cuda-skyline2.1,test2-N1000000-D4.in,87254,35.765791
+cuda-skyline1.1,test2-N1000000-D4.in,87254,11.701364
+cuda-skyline2.1,test3-N1000000-D10.in,106050,48.582396
+cuda-skyline1.1,test3-N1000000-D10.in,106050,16.119207
+cuda-skyline2.1,test4-N1000000-D8.in,11183,22.748638
+cuda-skyline1.1,test4-N1000000-D8.in,11183,7.499841
+cuda-skyline2.1,test5-N1000000-D20.in,913430,105.365279
+cuda-skyline1.1,test5-N1000000-D20.in,913430,95.034425
+cuda-skyline2.1,test6-N1000000-D50.in,1000050,124.328041
+cuda-skyline1.1,test6-N1000000-D50.in,1000050,226.189628

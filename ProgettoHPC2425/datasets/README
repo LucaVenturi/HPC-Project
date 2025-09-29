@@ -1,0 +1,15 @@
+Questa directory contiene alcuni input di esempio che si possono
+utilizzare con il programma skyline.c. Gli input possono essere
+generati usando il Makefile incluso, che sfrutta il comando "rbox"
+(parte del pacchetto qhull-bin).
+
+Chi lo desidera puo' generare altri input per verificare il proprio
+programma, oppure per effettuare i test di scalabilita' modificando il
+numero di punti.
+
+Il file inputgen.c genera un input che rappresenta il caso pessimo per
+l'algoritmo skyline (tutti i punti appartengono allo skyline). Si
+faccia riferimento al sorgente per ulteriori informazioni.
+
+NON INCLUDERE QUESTA DIRECTORY NELLA CONSEGNA! I file presenti qui
+occupano molto spazio e ne ho già una copia, quindi non ne ho bisogno.
