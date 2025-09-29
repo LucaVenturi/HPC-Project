@@ -8,7 +8,7 @@
 #    make test
 # E' una versione modificata del Makefile fornito per il progetto
 # che ora compila dentro alla cartella ../bin
-# e può compilare i programmi con il flag -DTESTING per raccogliere dati
+# e puo' compilare i programmi con il flag -DTESTING per raccogliere dati
 # con il comando "make test".
 
 

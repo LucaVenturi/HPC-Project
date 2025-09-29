@@ -16,7 +16,7 @@
  *          o
  *      ./bin/test_cuda-skyline [Numero ripetizioni] < input > output
  *
- * La versione di test esegue più volte il calcolo dello skyline e scrive
+ * La versione di test esegue piu' volte il calcolo dello skyline e scrive
  * su stderr il tempo medio di esecuzione della funzione skyline.
  *
  ****************************************************************************/
@@ -36,7 +36,7 @@
 /*
     Numero di thread per blocco
     In questa versione si prende il massimo numero di thread per blocco
-    perchè la griglia è monodimensionale.
+    perche' la griglia e' monodimensionale.
 */
 #define BLKDIM 1024
 
@@ -106,7 +106,7 @@ void free_points(points_t *points)
 }
 
 /* Returns 1 iff |p| dominates |q| */
-/* Ora è una funzione __device__ in quanto viene eseguita sulla GPU. */
+/* Ora e' una funzione __device__ in quanto viene eseguita sulla GPU. */
 __device__ int dominates(const float *p, const float *q, int D)
 {
     /* The following loops could be merged, but the keep them separated
@@ -131,7 +131,7 @@ __device__ int dominates(const float *p, const float *q, int D)
 /***
  * Kernel per il calcolo dello skyline sulla GPU
  * P: puntatore all'array delle coordinate dei punti allocato sulla GPU
- * s: puntatore all'array di interi che indicano se il punto i-esimo è nello skyline allocato sulla GPU
+ * s: puntatore all'array di interi che indicano se il punto i-esimo e' nello skyline allocato sulla GPU
  * N: numero di punti
  * D: numero di dimensioni
  * Ogni thread confronta il punto i-esimo con tutti gli altri punti e rimuove dallo skyline
@@ -143,13 +143,13 @@ __global__ void kernel_skyline(const float *P, int *s, int N, int D)
     /* Il thread ottiene il suo indice */
     const int i = threadIdx.x + blockIdx.x * blockDim.x;
 
-    /* Se il thread è associato ad un punto valido e tale punto è ancora nello skyline. */
+    /* Se il thread e' associato ad un punto valido e tale punto e' ancora nello skyline. */
     if (i < N && s[i])
     {
         /* Confronta il punto i-esimo con tutti gli altri punti. */
         for (int j = 0; j < N; j++)
         {
-            /* Se il punto j-esimo è ancora nello skyline e il punto i-esimo lo domina, allora il punto j-esimo viene
+            /* Se il punto j-esimo e' ancora nello skyline e il punto i-esimo lo domina, allora il punto j-esimo viene
             rimosso dallo skyline. */
             if (s[j] && dominates(&(P[i * D]), &(P[j * D]), D))
             {

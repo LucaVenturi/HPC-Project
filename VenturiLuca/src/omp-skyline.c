@@ -16,7 +16,7 @@
  *          o
  *      ./bin/omp-skyline [Numero ripetizioni] < input > output
  * 
- * La versione di test esegue più volte il calcolo dello skyline e scrive
+ * La versione di test esegue piu' volte il calcolo dello skyline e scrive
  * su stderr il tempo medio di esecuzione della funzione skyline.
  * 
  ****************************************************************************/
@@ -122,7 +122,7 @@ int skyline( const points_t *points, int *s )
 
     /* 
         Si crea una sezione parallela che crea una pool
-        di thread che verrà usata per più scopi, nello specifico per
+        di thread che verra' usata per piu' scopi, nello specifico per
         inizializzare s e successivamente per calcolare lo skyline.
      */
     #pragma omp parallel
@@ -143,13 +143,13 @@ int skyline( const points_t *points, int *s )
             Calcola lo skyline.
             Si usa "omp for" con schedule dynamic per bilanciare il carico di lavoro
             tra i thread, in quanto il numero di confronti da fare per ogni punto
-            può variare molto.
-            Per la chunk size si sono fatti dei test e si è visto che 64 è un buon compromesso.
+            puo' variare molto.
+            Per la chunk size si sono fatti dei test e si e' visto che 64 e' un buon compromesso.
             Anche con guided si ottengono ottimi risultati.
             Si usa una sezione critica per aggiornare l'array s e la variabile r.
-            Dentro alla sezione critica, si controlla anche se s[j] è ancora 1, in quanto
-            potrebbe essere già stato aggiornato da un altro thread nel frattempo, 
-            e si rischierebbe di decrementare r più volte per lo stesso punto.
+            Dentro alla sezione critica, si controlla anche se s[j] e' ancora 1, in quanto
+            potrebbe essere gia' stato aggiornato da un altro thread nel frattempo, 
+            e si rischierebbe di decrementare r piu' volte per lo stesso punto.
         */
         #pragma omp for schedule(dynamic, 64)
         for (int i=0; i<N; i++) {

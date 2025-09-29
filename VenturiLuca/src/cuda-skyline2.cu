@@ -16,7 +16,7 @@
  *          o
  *      ./bin/test_cuda-skyline2 [Numero ripetizioni] < input > output
  *
- * La versione di test esegue più volte il calcolo dello skyline e scrive
+ * La versione di test esegue piu' volte il calcolo dello skyline e scrive
  * su stderr il tempo medio di esecuzione della funzione skyline.
  *
  ****************************************************************************/
@@ -35,8 +35,8 @@
 
 /*
     Numero di thread per blocco
-    In questa versione si prende 32 perchè la griglia è bidimensionale,
-    quindi il numero di thread per blocco è BLKDIM*BLKDIM = 1024
+    In questa versione si prende 32 perche' la griglia e' bidimensionale,
+    quindi il numero di thread per blocco e' BLKDIM*BLKDIM = 1024
 */
 #define BLKDIM 32
 
@@ -106,7 +106,7 @@ void free_points(points_t *points)
 }
 
 /* Returns 1 iff |p| dominates |q| */
-/* Ora è una funzione __device__ perché deve essere eseguita sulla GPU  */
+/* Ora e' una funzione __device__ perché deve essere eseguita sulla GPU  */
 __device__ int dominates(const float *p, const float *q, int D)
 {
     /* The following loops could be merged, but the keep them separated
@@ -131,7 +131,7 @@ __device__ int dominates(const float *p, const float *q, int D)
 /***
  * Kernel per il calcolo dello skyline
  * Ogni thread confronta una coppia di punti (i,j) e, se i
- * domina j, allora s[j] viene settato a 0 (cioè j non è nello skyline).
+ * domina j, allora s[j] viene settato a 0 (cioe' j non e' nello skyline).
  * Usa atomicCAS per evitare contese sull'array s, 
  * alternativamente si potrebbe usare atomicExch.
  */
@@ -164,7 +164,7 @@ int skyline(const points_t *points, int *s)
     /*
         Crea una griglia bidimensionale di blocchi,
         ciascuno con una matrice di thread BLKDIM x BLKDIM = 1024 thread
-        NBLOCKS è il numero di blocchi necessari per coprire tutti i punti
+        NBLOCKS e' il numero di blocchi necessari per coprire tutti i punti
         con la griglia bidimensionale.
     */
     const int NBLOCKS = (N + BLKDIM - 1) / BLKDIM;
